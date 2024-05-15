@@ -1,0 +1,78 @@
+.content-login{
+  margin-top: 8em;
+  h1{
+    font-variant: small-caps;
+    margin: 0em 0em 0.5em 0em;
+  }
+
+  .login-form {
+    max-width: 80vw; // Set a max width for the form at 50% of the viewport width
+  
+    .form-group {
+      .password-toggle-icon {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+      }
+  
+      .validation-message {
+        color: #dc3545; 
+        font-size: 0.6rem; 
+        margin-top: 0.10rem; // Provide a small space above the validation message if needed
+      }
+    }
+    
+    .btn-social {
+      display: inline-block;
+      width: auto; // Auto width based on content
+      padding: 0.5rem 1rem; // Uniform padding around the text/icons
+      margin-right: 0.5rem; // Right margin for spacing between buttons
+  
+      // Aligning text/icon inside the button
+      justify-content: center;
+      align-items: center;
+  
+      &:last-child {
+        margin-right: 0; // No right margin for the last button
+      }
+    }
+  
+    .aux-links {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.9rem;
+    
+        a {
+          text-decoration: none; // Removes underline from links
+          color: inherit; // Inherits the font color
+          &:hover {
+            text-decoration: underline; // Underlines link on hover
+          }
+        }
+      }
+  }
+  .error-message {
+    font-size: 0.8em;
+    color: #ffffff;
+    background-color: #ef8a94; // Light red background color
+    padding: 1rem ; // Padding inside the error message
+    border-radius: .25rem; // Rounded corners
+    position:relative; // Fixed position
+    width: auto; // Auto width based on content
+    text-align: center; // Center text
+  }
+  
+ // Responsive styles for smaller devices
+ @media (max-width: 767px) {
+    .image-container {
+      display: none; // Hide the image on smaller screens
+    }
+  
+    .login-form {
+      max-width: 80vw; // Increase max width for the form on smaller screens
+    }
+  }
+}

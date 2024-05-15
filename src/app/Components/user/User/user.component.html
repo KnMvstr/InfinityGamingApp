@@ -1,0 +1,70 @@
+<div class="container-fluid wide-table-container my-4 mt-3">
+  <h2 class="text-center mb-4">See All User</h2>
+
+  <div class="d-flex flex-row flex-wrap justify-content-between mb-3">
+    <button type="button" class="btn btn-success mb-2" data-toggle="modal" data-target="#EditAddUser"
+      (click)="openModal()">New User</button>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-hover table-striped">
+      <thead>
+        <tr>
+          <th scope="col"><button type="button" class="btn" (click)="getAllSorted('id')">#ID</button></th>
+          <th scope="col"><button type="button" class="btn" (click)="getAllSorted('pseudo')">Pseudo</button></th>
+          <th scope="col"><button type="button" class="btn" (click)="getAllSorted('email')">Email</button></th>
+          <th scope="col" colspan="2">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of userList">
+          <th scope="row">{{user.id}}</th>
+          <td>{{user.pseudo}}</td>
+          <td>{{user.email}}</td>
+          <td>{{user.userType}}</td>
+
+          <td>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#EditAddUser"
+              (click)="openModal(user)">
+              <i class="fas fa-edit"></i>
+            </button>
+          </td>
+
+          <td>
+            <button type="button" class="btn btn-danger" (click)="deleteUser(user.id)">
+              <i class="fas fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="EditAddUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="">User Data</span>
+          </div>
+          <input type="text" class="form-control" *ngIf="creatingMode" [(ngModel)]="userToModify.email"
+            placeholder="email">
+          <input type="text" class="form-control" [(ngModel)]="userToModify.pseudo" placeholder="pseudo">
+          <input type="text" class="form-control" [(ngModel)]="userToModify.pwd" placeholder="password">
+          <input type="text" class="form-control" *ngIf="creatingMode" [(ngModel)]="userToModify.userType"
+            placeholder="GAMER/MODERATOR">
+        </div><br>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" *ngIf="creatingMode" (click)="createUser()">Create User</button>
+        <button type="button" class="btn btn-primary" *ngIf="!creatingMode" (click)="modifyUser()">Modify User</button>
+      </div>
+    </div>
+  </div>
+</div>

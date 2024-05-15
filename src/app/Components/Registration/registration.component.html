@@ -1,0 +1,56 @@
+<!-- registration.component.html -->
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <h2 class="mb-3">Register</h2>
+            <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()" novalidate>
+                <div class="form-group">
+                    <label for="pseudo">Pseudo</label>
+                    <input type="text" id="pseudo" class="form-control" formControlName="pseudo"
+                        placeholder="Enter pseudo">
+                    <div *ngIf="registrationForm.controls['pseudo'].invalid && registrationForm.controls['pseudo'].touched"
+                        class="text-danger">
+                        <div *ngIf="registrationForm.controls['pseudo'].errors?.['required']">
+                            Pseudo is required.
+                        </div>
+                        <div *ngIf="registrationForm.controls['pseudo'].errors?.['minlength']">
+                            Pseudo must be at least 3 characters long.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" class="form-control" formControlName="email"
+                        placeholder="Enter email">
+                    <div *ngIf="registrationForm.controls['email'].invalid && registrationForm.controls['email'].touched"
+                        class="text-danger">
+                        <div *ngIf="registrationForm.get('email')?.errors?.['required']">
+                            Email is required.
+                        </div>
+                        <div *ngIf="registrationForm.get('email')?.errors?.['email']">
+                            Please enter a valid email.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="pwd">Password</label>
+                    <input type="password" id="pwd" class="form-control" formControlName="pwd"
+                        placeholder="Enter password">
+                    <div *ngIf="registrationForm.controls['pwd'].invalid && registrationForm.controls['pwd'].touched"
+                        class="text-danger">
+                        <div *ngIf="registrationForm.get('pwd')?.errors?.['required']">
+                            Password is required.
+                        </div>
+                        <div *ngIf="registrationForm.get('pwd')?.errors?.['minlength']">
+                            Password must be at least 6 characters long.
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary" [disabled]="!registrationForm.valid">Register</button>
+            </form>
+        </div>
+    </div>
+</div>

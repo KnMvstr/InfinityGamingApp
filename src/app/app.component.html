@@ -1,0 +1,42 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">
+        <img src="../favicon.ico" width="30" height="30" class="d-inline-block align-top" alt="Logo"> InfinityGaming
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="navbar-nav">
+            <!-- App routing security can also be setted in the html using userHasRole method initialized in AuthService which has been implemented in the current html's linked component-->
+            <a class="nav-item nav-link" *ngIf="authService.isLoggedIn() && authService.userHasRole('ROLE_SUPERADMIN')" routerLink="/users"
+                routerLinkActive="active">Users</a>
+            <a class="nav-item nav-link" *ngIf="authService.isLoggedIn() && authService.userHasRole('ROLE_MODERATOR')" routerLink="/reviews"
+                routerLinkActive="active">Reviews</a>
+            <a class="nav-item nav-link" *ngIf="authService.isLoggedIn() && authService.userHasRole('ROLE_SUPERADMIN')" routerLink="/publishers"
+                routerLinkActive="active">Publishers</a>
+            <a class="nav-item nav-link" *ngIf="authService.isLoggedIn() && (authService.userHasRole('ROLE_MODERATOR') || authService.userHasRole('ROLE_SUPERADMIN'))" routerLink="/platforms"
+                routerLinkActive="active">Platforms</a>
+            <a class="nav-item nav-link" *ngIf="authService.isLoggedIn() && authService.userHasRole('ROLE_SUPERADMIN')" routerLink="/genres"
+                routerLinkActive="active">Genres</a>
+            <a class="nav-item nav-link" *ngIf="authService.isLoggedIn() && authService.userHasRole('ROLE_SUPERADMIN')" routerLink="/classifications"
+                routerLinkActive="active">Classifications</a>
+            <a class="nav-item nav-link" *ngIf="authService.isLoggedIn() && authService.userHasRole('ROLE_SUPERADMIN')" routerLink="/businessmodels"
+                routerLinkActive="active">BusinessModel</a>
+            <a class="nav-item nav-link" *ngIf="authService.isLoggedIn() && (authService.userHasRole('ROLE_MODERATOR') || authService.userHasRole('ROLE_SUPERADMIN'))" routerLink="/games"
+                routerLinkActive="active">Game</a>
+        </div>
+
+        <!-- Barre de recherche -->
+        <app-search-bar class="ml-auto mr-3"></app-search-bar>
+
+        <div class="ml-auto">
+            <button class="btn btn-outline-success my-2 my-sm-0" *ngIf="!authService.isLoggedIn()"
+                (click)="navigateToLogin()">Login</button>
+            <button class="btn btn-outline-danger my-2 my-sm-0" *ngIf="authService.isLoggedIn()"
+                (click)="authService.logout()">Logout</button>
+        </div>
+    </div>
+</nav>
+
+<router-outlet></router-outlet>

@@ -1,0 +1,82 @@
+<div class="container-fluid wide-table-container my-4 mt-3">
+  <h2 class="text-center mb-4">See All Platform</h2>
+
+  <div class="d-flex flex-row flex-wrap justify-content-between mb-3">
+    <button type="button" class="btn btn-success mb-2" data-toggle="modal" data-target="#EditAddPlatform"
+      (click)="openModal()">New Platform</button>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-hover table-striped">
+      <thead>
+        <tr>
+          <th scope="col"><button type="button" class="btn" (click)="getAllSorted('id')">#ID</button></th>
+          <th scope="col"><button type="button" class="btn" (click)="getAllSorted('name')">Name</button></th>
+          <th scope="col">Games</th>
+          <th scope="col" colspan="2">Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let platform of platformList">
+          <!-- <pre>{{ platform | json }}</pre> to debug the json -->
+          <th scope="row">{{platform.id}}</th>
+          <td>{{platform.name}}</td>
+          <td>
+            <ul>
+              <li *ngFor="let game of platform.games">{{ game.name }}</li>
+            </ul>
+          </td>
+
+          <td>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#EditAddPlatform"
+              (click)="openModal(platform)"><i class="fas fa-edit"></i></button>
+          </td>
+
+          <td>
+            <button type="button" class="btn btn-danger" *ngIf="adminFeatures" (click)="deletePlatform(platform.id)"><i
+                class="fas fa-trash"></i></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="modal fade" id="EditAddPlatform" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="">New Platform</span>
+          </div>
+          <input type="text" class="form-control" [(ngModel)]="platformToModify.name" placeholder="name">
+          <!-- Multi-select dropdown for selecting games -->
+          <div class="form-group">
+            <label for="gameSelect">Select Games:</label>
+            <div *ngFor="let game of allGames" class="form-check">
+              <input type="checkbox"
+                     class="form-check-input"
+                     [id]="'game-' + game.id"
+                     [checked]="gameSelections[game.id]"
+                     (change)="updateSelectedGames(game)">
+              <label class="form-check-label" for="'game-' + game.id">{{ game.name }}</label>
+            </div>
+          </div>
+
+        </div>
+        <br>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" *ngIf="creatingMode" (click)="createPlatform()">Create
+          Platform</button>
+        <button type="button" class="btn btn-primary" *ngIf="!creatingMode" (click)="modifyPlatform()">Modify
+          Platform</button>
+      </div>
+    </div>
+  </div>
+</div>

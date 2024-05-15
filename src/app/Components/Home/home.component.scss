@@ -1,0 +1,74 @@
+.top_wallpaper {
+  background-image: url("https://www.gamewallpapers.com/img_script/wallpaper_dir/img.php?src=wallpaper_cities_skylines_2_03_2560x1080.jpg&height=506&sharpen");
+  background-position-y: -18vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 60vh;
+  width: 100vw;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: -2;
+  /*banner transformation*/
+  clip-path: polygon(0 0, 0 80%, 100% 100%, 100% 25%, 100% 0);
+}
+
+.top_wallpaper_content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: absolute;
+  width: 45vw;
+  height: 8em;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-align: center;
+  z-index: 1;
+  font-variant: small-caps;
+  background-color: rgba(130, 130, 130, 0.3);
+  border-radius: 15px;
+}
+
+/* Additional media query to adjust the clip-path for different screen sizes */
+@media (max-width: 768px) {
+  .top_wallpaper {
+    /* Adjust the points in the polygon for a steeper or shallower angle on smaller screens */
+    clip-path: polygon(0 0, 100% 0, 100% 75%, 0 90%);
+  }
+}
+
+.container {
+  margin-top: 45vh;
+}
+
+.home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+}
+
+.card {
+  transition: transform 0.3s ease-in-out;
+
+  &:hover {
+    transform: scale(1.03);
+  }
+
+  .card-img-top {
+    width: 100%;
+  }
+}

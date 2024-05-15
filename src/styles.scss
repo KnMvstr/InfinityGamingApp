@@ -1,0 +1,52 @@
+/* You can add global styles to this file, and also import other style files */
+@import '@fortawesome/fontawesome-free/css/all.css';
+
+//////CRUD COMPONENT STYLES////////
+/* Custom styles to control table column widths */
+.col-id { width: 2%; }
+.col-name { width: 5%; }
+.col-date { width: 5%; }
+.col-genre { width: 5%; }
+.col-platform { width: 15%; }
+.col-publisher { width: 10%; }
+.col-classification { width: 5%; }
+.col-image { width: 5%; }
+.col-trailer { width: 5%; }
+.col-action { width: 5%; }
+
+.wide-table-container{
+    max-width: 96%;
+    .table {
+        table-layout: auto; /* Change from 'fixed' to 'auto' to allow table cells to resize based on content */
+        width: 100%;
+      }
+}
+/* Wrapping text for smaller screens */
+@media (max-width: 768px) {
+  .table th, .table td {
+    white-space: nowrap;
+    overflow:hidden;
+    text-overflow: ellipsis;
+    font-size: 0.8em;
+    .btn {
+        overflow:hidden;
+        white-space: nowrap;
+        font-size: 0.8em;
+        text-overflow: ellipsis;
+    }
+  }
+/* Add padding to buttons and icons for easier touch */
+  .table{
+    padding: 12px;
+  .table .btn,
+    .table .fa-eye {
+      padding: 0.5em;
+      margin: 0.2em;
+    }
+
+     /* Hide certain table columns on smaller screens */
+     .d-none.d-md-table-cell {
+        display: none;
+      }
+}
+}

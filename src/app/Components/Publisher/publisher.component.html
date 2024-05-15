@@ -1,0 +1,70 @@
+<div class="container-fluid wide-table-container my-4 mt-3">
+  <h2>See All Publisher</h2>
+
+  <div class="d-flex flex-row flex-wrap justify-content-between mb-3">
+    <button type="button" class="btn btn-success mb-2" data-toggle="modal" data-target="#EditAddPublisher"
+      (click)="openModal()">New Publisher</button>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-hover table-striped">
+      <thead>
+        <tr>
+          <th scope="col"><button type="button" class="btn" (click)="getAllSorted('id')">#ID</button></th>
+          <th scope="col"><button type="button" class="btn" (click)="getAllSorted('name')">Name</button></th>
+          <th scope="col">Games</th>
+          <th scope="col" colspan="2">Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let publisher of publisherList">
+          <th scope="row">{{publisher.id}}</th>
+          <td>{{publisher.name}}</td>
+          <td>
+            <ul>
+              <li *ngFor="let game of publisher.games">{{ game.name }}</li>
+            </ul>
+          </td>
+
+          <td>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#EditAddPublisher"
+              (click)="openModal(publisher)">
+              <i class="fas fa-edit"></i>
+            </button>
+          </td>
+
+          <td>
+            <button type="button" class="btn btn-danger" (click)="deletePublisher(publisher.id)">
+              <i class="fas fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="modal fade" id="EditAddPublisher" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="">New Publisher</span>
+          </div>
+          <input type="text" class="form-control" [(ngModel)]="publisherToModify.name" placeholder="name">
+        </div><br>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" *ngIf="creatingMode" (click)="createPublisher()">Create
+          Publisher</button>
+        <button type="button" class="btn btn-primary" *ngIf="!creatingMode" (click)="modifyPublisher()">Modify
+          Publisher</button>
+      </div>
+    </div>
+  </div>
+</div>

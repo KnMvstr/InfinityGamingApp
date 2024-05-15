@@ -1,0 +1,22 @@
+<section class="top_wallpaper">
+</section>
+
+<section class="top_wallpaper_content">
+  <h3>Join us to make your voice count </h3>
+  <h4>Already {{ reviewsCount }} review over {{ gamesCount }} games</h4>
+</section>
+
+<div class="container">
+    <div class="row">
+      <!-- Loop through each game in the gameList -->
+      <div *ngFor="let game of gameList" class="col-md-4 mb-4" (click)="navigateToGame(game.id)">
+        <div class="card h-100">
+          <img [src]="game.backgroundImage" class="card-img-top" [alt]="game.name" style="height: 200px; object-fit: cover;">
+          <div class="card-body">
+            <h5 class="card-title">{{ game.name }}</h5>
+            <p class="card-text" [innerHTML]="truncateHtml(game.description, 80)"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

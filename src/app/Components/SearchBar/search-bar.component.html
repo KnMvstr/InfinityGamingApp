@@ -1,0 +1,24 @@
+<div class="search-container">
+  <input type="text" [formControl]="searchControl" placeholder="Recherchez des jeux..." (input)="onSearchInput()">
+
+  <ul class="search-results" *ngIf="showResults && (results | async) as games">
+    <li *ngFor="let game of games" (click)="game.id ? onSelect(game) : onUnavailable()" class="search-result">
+      <a [routerLink]="['/game-detail', game.id]">
+        <div class="game-info">
+          <img [src]="game.image || 'default-game-icon.png'" alt="{{ game.name }}" class="game-image">
+          <div class="game-details">
+            <h3>{{ game.name }}</h3>
+          </div>
+        </div>
+      </a>
+
+      <div *ngIf="!game.id" class="game-info">
+        <img [src]="game.image || 'default-image.jpg'" alt="{{ game.name }}" class="game-image">
+        <div class="game-details">
+          <h3>{{ game.name }}</h3>
+          <p>No details available</p>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>

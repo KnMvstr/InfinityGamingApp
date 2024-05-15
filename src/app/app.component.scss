@@ -1,0 +1,36 @@
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1050;
+}
+
+.container-fluid h2{
+    top : 25%;
+}
+
+router-outlet {
+    display: block; /* Ensure it is not inline */
+    margin-top: 20px; /* Space below the navbar */
+}
+
+.app-search-bar {
+    margin-left: auto; /* pushes the search bar to the right in a flex container */
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        position: static; /* Optionally make navbar static on smaller screens */
+        padding-top: 0;
+    }
+
+    body {
+        padding-top: 10px; /* Less padding on small screens */
+    }
+
+    .game-image {
+        width: 50px; /* Adjust size for smaller screens */
+        height: 50px;
+    }
+}

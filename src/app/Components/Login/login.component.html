@@ -1,0 +1,43 @@
+<!-- login.component.html -->
+<div class="content-login d-flex justify-content-center">
+    <form (submit)="login()" class="login-form text-center" novalidate>
+        <h1> Account Login </h1>
+
+        <!-- Username Field -->
+        <div class="form-group">
+            <input id="Username" type="text" name="username" [(ngModel)]="credentials.username"
+                class="form-control mb-3" placeholder="Username" required #username="ngModel">
+            <div *ngIf="username.invalid && (username.dirty || username.touched)" class="validation-message">
+                Username is required.
+            </div>
+        </div>
+
+        <!-- Password Field -->
+        <div class="form-group position-relative">
+            <input [type]="showPassword ? 'text' : 'password'" id="Password" name="password"
+                [(ngModel)]="credentials.password" class="form-control mb-3" placeholder="Password" required
+                #password="ngModel">
+            <i class="password-toggle-icon fas" [class.fa-eye-slash]="showPassword" [class.fa-eye]="!showPassword"
+                (click)="togglePasswordVisibility()"></i>
+        </div>
+
+        <!-- Social Media Login Options -->
+        <div class="social-login-options mb-3">
+            <button type="button" class="btn btn-social btn-facebook"><i class="fa-brands fa-facebook-f"></i></button>
+            <button type="button" class="btn btn-social btn-google"><i class="fa-brands fa-google"></i></button>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary btn-block mb-3">Login</button>
+        <div *ngIf="showError" class="error-message">
+            {{ error }}
+        </div>
+
+        <!-- Auxiliary Links -->
+        <div class="aux-links">
+            <a href="#" class="forgot-password">Forgot Password?</a>
+            <span>|</span>
+            <a routerLink="/register" class="sign-up">Register</a>
+        </div>
+    </form>
+</div>
